@@ -10,7 +10,7 @@ environment:
   sdk: '>=2.18.0 <3.0.0'
 
 dependencies:
-  chopper: ^6.1.0
+  chopper: '>=5.0.0 <7.0.0'
 
 dev_dependencies:
   linteo: ^1.1.0
