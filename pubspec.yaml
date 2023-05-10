@@ -1,0 +1,21 @@
+name: simple_chopper_logger
+description: Implementation of Request and Response Chopper interceptors that provides simple but pleasant to look at output.
+version: 0.0.1
+homepage: null
+
+environment:
+  sdk: '>=2.18.0 <3.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  chopper: ^6.1.0
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter: null
+
