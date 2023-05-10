@@ -11,6 +11,10 @@ import 'package:chopper/chopper.dart';
 /// To change the default behavior, pass any function that takes a [String] as an argument.
 typedef Logger = void Function(String line);
 
+/// A function that is used to format [DateTime] objects.
+/// By default, it uses [DateTime.toString].
+typedef DateFormatter = String Function(DateTime dateTime);
+
 const _prefix = '[SimpleChopperLogger] ';
 
 /// A [RequestInterceptor] and [ResponseInterceptor] that logs requests and responses.
@@ -34,6 +38,7 @@ class SimpleChopperLogger implements RequestInterceptor, ResponseInterceptor {
     this.includeResponseBody = true,
     this.prefix = _prefix,
     this.logger = print,
+    this.dateFormatter,
   });
 
   /// Specifies whether request headers should be logged.
@@ -56,11 +61,17 @@ class SimpleChopperLogger implements RequestInterceptor, ResponseInterceptor {
   /// By default, it uses [print].
   final Logger logger;
 
+  /// Specifies the date formatter that will be used to format [DateTime] objects.
+  ///
+  /// By default, it uses [DateTime.toString].
+  final DateFormatter? dateFormatter;
+
   @override
   FutureOr<Request> onRequest(Request request) {
     final output = StringBuffer();
 
-    final now = DateTime.now().yyyymmddhhnnss;
+    final now =
+        dateFormatter?.call(DateTime.now()) ?? DateTime.now().toString();
 
     output.write('[Request] ');
 
@@ -101,7 +112,8 @@ class SimpleChopperLogger implements RequestInterceptor, ResponseInterceptor {
     final request = response.base.request;
     final output = StringBuffer();
 
-    final now = DateTime.now().yyyymmddhhnnss;
+    final now =
+        dateFormatter?.call(DateTime.now()) ?? DateTime.now().toString();
 
     final method = request?.method;
     final url = request?.url;
@@ -153,11 +165,4 @@ class SimpleChopperLogger implements RequestInterceptor, ResponseInterceptor {
 
     return response;
   }
-}
-
-/// Extension on [DateTime] that returns a formatted string.
-/// Format: `YYYY-MM-DD - HH:NN:SS`
-extension _YYYYMMDDHHNNSS on DateTime {
-  String get yyyymmddhhnnss =>
-      '$year-${month.toString().padLeft(2, '0')}-${day.toString().padLeft(2, '0')} - ${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')}:${second.toString().padLeft(2, '0')}';
 }
