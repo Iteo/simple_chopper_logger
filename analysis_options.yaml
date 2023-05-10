@@ -1,4 +1,6 @@
-include: package:flutter_lints/flutter.yaml
+include: package:linteo/analysis_options.yaml
 
-# Additional information about this file can be found at
-# https://dart.dev/guides/language/analysis-options
+linter:
+  rules:
+    # Adjust package to specific project needs
+    # package_api_docs: true  # Uncomment to enable rule
