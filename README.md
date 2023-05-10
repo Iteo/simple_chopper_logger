@@ -1,4 +1,4 @@
-# simple_chopper_logger
+# Simple Chopper Logger
 
 Simple Chopper Logger is a [Chopper](https://pub.dev/packages/chopper) interceptor that prints request and response logs in a readable format.
 
@@ -7,7 +7,9 @@ Simple Chopper Logger is a [Chopper](https://pub.dev/packages/chopper) intercept
 To use Simple Chopper Logger just add it to your Chopper client:
 
 ```dart
-final chopper = ChopperClient(
+import 'package:simple_chopper_logger/simple_chopper_logger.dart';
+
+final chopperClient = ChopperClient(
   baseUrl: 'YOUR_BASE_URL',
   services: [
     // Your services here
@@ -18,5 +20,12 @@ final chopper = ChopperClient(
 );
 ```
 
-## How it looks
-<!-- TODO ADD EXAMPLE -->
+# How it looks like
+
+## Request
+
+![Example Request](https://github.com/Iteo/simple_chopper_logger/blob/main/images/request.png)
+
+## Response
+
+![Example Response](https://github.com/Iteo/simple_chopper_logger/blob/main/images/response.png)
