@@ -1,16 +1,16 @@
 name: simple_chopper_logger
 description: Implementation of Request and Response Chopper interceptors that provides simple but pleasant to look at output.
-version: 1.0.0
+version: 1.0.1
 repository: https://github.com/Iteo/simple_chopper_logger
 issue_tracker: https://github.com/Iteo/simple_chopper_logger/issues
 homepage: https://github.com/Iteo/simple_chopper_logger
 documentation: https://github.com/Iteo/simple_chopper_logger/blob/main/README.md
 
 environment:
-  sdk: '>=2.18.0 <3.0.0'
+  sdk: '>=2.18.0 <4.0.0'
 
 dependencies:
-  chopper: ^6.1.0
+  chopper: ^7.0.10
 
 dev_dependencies:
   linteo: ^1.1.0
