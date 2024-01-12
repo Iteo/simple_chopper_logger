@@ -14,11 +14,14 @@ jobs:
     steps:
       # Checkout repository
       - uses: actions/checkout@v3
+        # Setup Flutter SDK
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
       # Setup Dart SDK with JWT token
       - uses: dart-lang/setup-dart@main
       # Minimal package setup.
       - name: Install dependencies
-        run: dart pub get
+        run: flutter pub get
       # Publishing...
       - name: Publish to pub.dev
         run: dart pub publish -f
