@@ -1,3 +1,8 @@
+## 1.1.0
+- Bump lib version
+- Added support for custom DateFormatter
+- Change required chopper dependency
+
 ## 1.0.1
 - Bump lib version
 
