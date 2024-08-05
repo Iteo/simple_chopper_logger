@@ -42,7 +42,7 @@ dependencies:
 dev_dependencies:
   build_runner: ^2.4.9
   chopper_generator: ^8.0.1
-  flutter_lints: ^2.0.0
+  flutter_lints: ^4.0.0
   flutter_test:
     sdk: flutter
 
