@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:chopper/chopper.dart';
 import 'package:example/chopper_api.dart';
 import 'package:example/create_post_dialog.dart';
@@ -9,18 +7,7 @@ import 'package:example/update_post_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_chopper_logger/simple_chopper_logger.dart';
 
-final class _CertOverride extends HttpOverrides {
-  @override
-  HttpClient createHttpClient(SecurityContext? context) {
-    return super.createHttpClient(context)
-      ..badCertificateCallback =
-          (X509Certificate cert, String host, int port) => true;
-  }
-}
-
 void main() {
-  HttpOverrides.global = _CertOverride();
-
   final chopperClient = ChopperClient(
     baseUrl: Uri.parse('https://jsonplaceholder.typicode.com'),
     services: [
