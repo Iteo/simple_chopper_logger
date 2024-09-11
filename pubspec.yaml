@@ -7,11 +7,10 @@ homepage: https://github.com/Iteo/simple_chopper_logger
 documentation: https://github.com/Iteo/simple_chopper_logger/blob/main/README.md
 
 environment:
-  sdk: '>=2.18.0 <4.0.0'
+  sdk: ">=2.18.0 <4.0.0"
 
 dependencies:
-  chopper: '>=5.0.0 <8.0.0'
+  chopper: ">=8.0.0 <9.0.0"
 
 dev_dependencies:
   linteo: ^1.1.0
-

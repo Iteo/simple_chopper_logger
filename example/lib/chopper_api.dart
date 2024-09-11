@@ -11,7 +11,16 @@ abstract class ChopperExampleService extends ChopperService {
   Future<Response> getPosts();
 
   @Post()
-  Future<Response> postPost(
-    @Body() Map<String, dynamic> body,
-  );
+  Future<Response> createPost(@Body() Map<String, dynamic> body);
+
+  @Put(path: '/{id}')
+  Future<Response> updatePost(
+      @Path('id') int id, @Body() Map<String, dynamic> body);
+
+  @Patch(path: '/{id}')
+  Future<Response> patchPost(
+      @Path('id') int id, @Body() Map<String, dynamic> body);
+
+  @Delete(path: '/{id}')
+  Future<Response> deletePost(@Path('id') int id);
 }

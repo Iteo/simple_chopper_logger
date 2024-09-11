@@ -17,7 +17,7 @@ typedef DateFormatter = String Function(DateTime dateTime);
 
 const _prefix = '[SimpleChopperLogger] ';
 
-/// A [RequestInterceptor] and [ResponseInterceptor] that logs requests and responses.
+/// An [Interceptor] that logs requests and responses.
 ///
 /// Logging of specific parts of the request and response can be enabled or disabled
 /// by using the appropriate constructor parameters.
@@ -30,7 +30,7 @@ const _prefix = '[SimpleChopperLogger] ';
 ///
 /// **Warning** Be careful when using this in production, as it will log sensitive
 /// information such as headers and request/response bodies.
-class SimpleChopperLogger implements RequestInterceptor, ResponseInterceptor {
+class SimpleChopperLogger implements Interceptor {
   SimpleChopperLogger({
     this.includeRequestHeaders = true,
     this.includeRequestBody = true,
@@ -67,7 +67,10 @@ class SimpleChopperLogger implements RequestInterceptor, ResponseInterceptor {
   final DateFormatter? dateFormatter;
 
   @override
-  FutureOr<Request> onRequest(Request request) {
+  FutureOr<Response<BodyType>> intercept<BodyType>(
+    Chain<BodyType> chain,
+  ) async {
+    final request = chain.request;
     final output = StringBuffer();
 
     final now =
@@ -104,38 +107,27 @@ class SimpleChopperLogger implements RequestInterceptor, ResponseInterceptor {
       logger('$prefix$line');
     }
 
-    return request;
-  }
+    output.clear();
 
-  @override
-  FutureOr<Response<dynamic>> onResponse(Response<dynamic> response) {
-    final request = response.base.request;
-    final output = StringBuffer();
+    final response = await chain.proceed(request);
 
-    final now =
-        dateFormatter?.call(DateTime.now()) ?? DateTime.now().toString();
-
-    final method = request?.method;
-    final url = request?.url;
+    final method = request.method;
     final responseBase = response.base;
     final reasonPhrase = responseBase.reasonPhrase;
 
     output.write('[Response] ');
 
-    if (method != null) {
-      output.write('$method, ');
-    }
+    output.write('$method, ');
 
     output.write(response.statusCode.toString());
+
     if (reasonPhrase != null) {
       output.write(' ($reasonPhrase),');
     }
 
     output.writeln(' $now ');
 
-    if (url != null) {
-      output.writeln('$url');
-    }
+    output.writeln('${request.url}');
 
     if (includeResponseHeaders) {
       output.writeln('Headers:');

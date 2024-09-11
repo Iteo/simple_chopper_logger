@@ -6,15 +6,16 @@ part of 'chopper_api.dart';
 // ChopperGenerator
 // **************************************************************************
 
-// ignore_for_file: always_put_control_body_on_new_line, always_specify_types, prefer_const_declarations, unnecessary_brace_in_string_interps
-class _$ChopperExampleService extends ChopperExampleService {
+// coverage:ignore-file
+// ignore_for_file: type=lint
+final class _$ChopperExampleService extends ChopperExampleService {
   _$ChopperExampleService([ChopperClient? client]) {
     if (client == null) return;
     this.client = client;
   }
 
   @override
-  final definitionType = ChopperExampleService;
+  final Type definitionType = ChopperExampleService;
 
   @override
   Future<Response<dynamic>> getPosts() {
@@ -28,7 +29,7 @@ class _$ChopperExampleService extends ChopperExampleService {
   }
 
   @override
-  Future<Response<dynamic>> postPost(Map<String, dynamic> body) {
+  Future<Response<dynamic>> createPost(Map<String, dynamic> body) {
     final Uri $url = Uri.parse('/posts');
     final $body = body;
     final Request $request = Request(
@@ -36,6 +37,49 @@ class _$ChopperExampleService extends ChopperExampleService {
       $url,
       client.baseUrl,
       body: $body,
+    );
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
+  Future<Response<dynamic>> updatePost(
+    int id,
+    Map<String, dynamic> body,
+  ) {
+    final Uri $url = Uri.parse('/posts/${id}');
+    final $body = body;
+    final Request $request = Request(
+      'PUT',
+      $url,
+      client.baseUrl,
+      body: $body,
+    );
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
+  Future<Response<dynamic>> patchPost(
+    int id,
+    Map<String, dynamic> body,
+  ) {
+    final Uri $url = Uri.parse('/posts/${id}');
+    final $body = body;
+    final Request $request = Request(
+      'PATCH',
+      $url,
+      client.baseUrl,
+      body: $body,
+    );
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
+  Future<Response<dynamic>> deletePost(int id) {
+    final Uri $url = Uri.parse('/posts/${id}');
+    final Request $request = Request(
+      'DELETE',
+      $url,
+      client.baseUrl,
     );
     return client.send<dynamic, dynamic>($request);
   }
