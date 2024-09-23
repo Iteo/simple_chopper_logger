@@ -1,6 +1,6 @@
 name: simple_chopper_logger
 description: Implementation of Request and Response Chopper interceptors that provides simple but pleasant to look at output.
-version: 1.1.0
+version: 2.0.0
 repository: https://github.com/Iteo/simple_chopper_logger
 issue_tracker: https://github.com/Iteo/simple_chopper_logger/issues
 homepage: https://github.com/Iteo/simple_chopper_logger
